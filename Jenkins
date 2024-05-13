@@ -1,0 +1,16 @@
+  17  wget http://15.206.194.50:8080/jnlpJars/jenkins-cli.jar
+   18  ls
+   19  java -jar jenkins-cli.jar -s http://15.206.194.50:8080 -auth admin:11aa7a9220fc0cfbd450dc6220a4122d79
+   20  who-am-i
+   21  java -jar jenkins-cli.jar -s http://15.206.194.50:8080 -auth admin:11aa7a9220fc0cfbd450dc6220a4122d79 --websocket list-jobs
+   22  java -jar jenkins-cli.jar -s http://15.206.194.50:8080 -auth admin:11aa7a9220fc0cfbd450dc6220a4122d79 -websocket list-jobs
+   23  java -jar jenkins-cli.jar -s http://15.206.194.50:8080 -auth admin:11aa7a9220fc0cfbd450dc6220a4122d79 -websocket list-jobs
+   24  clear
+   25  java -jar jenkins-cli.jar -s http://15.206.194.50:8080 -auth admin:11aa7a9220fc0cfbd450dc6220a4122d79 -websocket list-jobs
+   26  java -jar jenkins-cli.jar -s http://15.206.194.50:8080 -auth admin:11aa7a9220fc0cfbd450dc6220a4122d79 -webSocket list-jobs
+   27  java -jar jenkins-cli.jar -s http://15.206.194.50:8080 -auth admin:11aa7a9220fc0cfbd450dc6220a4122d79 -webSocket build test_pipline
+   28  ls
+   29  clear
+   30  systemctl restart jenkins.service
+   31  java -jar jenkins-cli.jar -s http://15.206.194.50:8080 -auth admin:11aa7a9220fc0cfbd450dc6220a4122d79 -webSocket list-jobs
+   32  java -jar jenkins-cli.jar -s http://15.206.194.50:8080 -auth admin:11aa7a9220fc0cfbd450dc6220a4122d79 -webSocket build mypipline

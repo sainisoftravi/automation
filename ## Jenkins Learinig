@@ -1,0 +1,112 @@
+## Jenkins Learinig
+https://kodekloud.com/topic/course-introduction-16/
+
+https://kodekloud.com/community/c/cicd/jenkins/21
+
+instllation on amazon ec2 jenkins https://www.jenkins.io/doc/tutorials/tutorial-for-installing-jenkins-on-AWS/
+for jenkins cli setup
+
+wget http://15.206.194.50:8080/jnlpJars/jenkins-cli.jar
+
+java -jar jenkins-cli.jar -s http://15.206.194.50:8080 -auth admin:11aa7a9220fc0cfbd450dc6220a4122d79
+
+to see all the piplline ##
+
+java -jar jenkins-cli.jar -s http://15.206.194.50:8080 -auth admin:11aa7a9220fc0cfbd450dc6220a4122d79 -webSocket list-jobs
+
+to run the pipline  #
+java -jar jenkins-cli.jar -s http://15.206.194.50:8080 -auth admin:11aa7a9220fc0cfbd450dc6220a4122d79 -webSocket build test_pipline
+
+Note:- when we install jenkins on t2.micro we will get storage issue in /tmp
+so if we are running on the t2.micro or other we can increase the size by attach another volume 
+
+first make a ebs as per requirement 
+allocate to instance 
+
+then via ssh 
+first run 
+lsblk # it will show the volumen attach but mount point not availble
+
+now first make a partition if required 
+fdisk /dev/xvdb
+ then after this procee 
+ make file system
+ first check the file system 
+ file -s /dev/xvdb1
+
+ if its show file system  then mount or if not show then use
+ mkfs -t filesystem /dev/xvdb1
+ mkfs -t xfs /dev/xvd1
+
+ now add a mount point with mount /dev/xvdb1 or via vim /etc/fstab
+
+ manage jenkins:=
+
+ there i 3 option installed:-plugin already instaled
+
+available:-need based #####
+updates :-requiremnet of new updates of plugin or if any new update comes
+advanced setting :- deploy a custom plugin 
+
+###Creating a bacups of Jenkins ####
+download the thin backup plugin from the manage plugin
+after the succesfully download 
+we will create a folder in jenkins server & we will give the appropriate permission to that folder
+
+then in manage jenkings
+we will found the thin backup then click on the backup now option
+
+### Monitor Jenkins###
+Download the Promethius plugin in jenkins plugins
+then configure the promethius server 
+add the target group by editing /etc/prometheous/promethios.yml
+ in the yml
+ look the static_configs
+
+ enter this 
+
+ -job-name:'jenkins'
+ metrics_path: '/promethus'
+statics_configs:
+-target: ['jenkins_serverip:8080']
+
+Jenkins File
+
+
+Login into the Jenkins server and follow the below given steps:
+
+1. Go to Manage Jenkins.
+2. Click on Plugins.
+3. Under Available, search for SSH Build Agents plugin.
+4. Select it and install.
+5. Once installed click on Restart Jenkins when installation is complete and no jobs are running
+
+
+
+Example pipline of getting information of jenkins server
+pipeline {
+    agent any
+    
+    stages {
+        stage('Get System Information') {
+            steps {
+                script {
+                    // Execute shell commands to gather system information
+                    def hostname = sh(script: 'hostname', returnStdout: true).trim()
+                    def cpuInfo = sh(script: 'cat /proc/cpuinfo', returnStdout: true).trim()
+                    def memoryInfo = sh(script: 'free -m', returnStdout: true).trim()
+                    def diskSpace = sh(script: 'df -h', returnStdout: true).trim()
+                    
+                    // Print system information
+                    echo "Hostname: ${hostname}"
+                    echo "CPU Info:"
+                    echo "${cpuInfo}"
+                    echo "Memory Info:"
+                    echo "${memoryInfo}"
+                    echo "Disk Space:"
+                    echo "${diskSpace}"
+                }
+            }
+        }
+    }
+}

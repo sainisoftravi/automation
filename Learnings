@@ -1,0 +1,10 @@
+START RequestId: 6d880645-20a8-4fe4-b05f-dca5657de848 Version: $LATEST
+LAMBDA_WARNING: Unhandled exception. The most likely cause is an issue in the function code. However, in rare cases, a Lambda runtime update can cause unexpected function behavior. For functions using managed runtimes, runtime updates can be triggered by a function change, or can be applied automatically. To determine if the runtime has been updated, check the runtime version in the INIT_START log entry. If this error correlates with a change in the runtime version, you may be able to mitigate this error by temporarily rolling back to the previous runtime version. For more information, see 	
+[ERROR] Runtime.ImportModuleError: Unable to import module 'lambda_function': No module named 'lambda_function'
+Traceback (most recent call last):END RequestId: 6d880645-20a8-4fe4-b05f-dca5657de848
+REPORT RequestId: 6d880645-20a8-4fe4-b05f-dca5657de848	Duration: 12.55 ms	Billed Duration: 13 ms	Memory Size: 128 MB	Max Memory Used: 30 MB	Init Duration: 61.17 ms
+
+Request ID
+
+
+/home/cloudshell-user/response.zip

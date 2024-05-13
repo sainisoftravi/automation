@@ -1,0 +1,43 @@
+Kadel tata 4g  Kadel@021122
+kadel tata 5g  Kadel@021122
+W: http://repo.pritunl.com/stable/apt/dists/focal/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+
+ns25.domaincontrol.com
+ns26.domaincontrol.com
+###################
+docker network ls #list the all network
+docker network prune # remove all unused network
+
+
+
+#create a network in docker 
+format :- docker network create --driver bridge --subnet ipsubnet networkname
+
+Example:docker network create --driver bridge --subnet 10.10.10.0/24 kodecloud
+ for to connect docket with custom network
+
+ docker run -itd --name image2 --network networkname imagename
+ docker run -itd --name image2 --network kodecloud ubuntu:20.04
+
+ command to connect a running container  existing bridge network 
+docker network connect connection_name image_name
+
+docker network connect bridge image2
+
+
+
+######docker volume creation
+
+ docker volume ls ## list all volume
+docker volume create testvol # for createa volume
+
+docker volume ls
+DRIVER    VOLUME NAME
+local     testvol
+
+for mounting volume in container 
+syntax  docker run -itd --name volumetest -v volume_name:/mounting_point --network network_if_required -p 81:80 ubuntu:20.04
+
+example  docker run -itd --name volumetest -v testvol:/opt --network kodecloud -p 81:80 ubuntu:20.04
+https://docs.docker.com/storage/volumes/
+
